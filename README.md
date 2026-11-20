@@ -1,62 +1,131 @@
-# Scrapbook Puzzle Cam
+# Puzzle Cam
 
-Sebuah aplikasi bilik foto (*photobooth*) interaktif berbasis web di kendalikan dengan gerakan tangan (*hand gestures*), pecahkan *sliding puzzle* untuk mendapatkan fotomu, dan hias hasil jepretanmu dengan stiker bergaya *scrapbook* — semuanya langsung di *browser* kamu tanpa perlu instalasi aplikasi tambahan!
+Photobooth interaktif berbasis web yang dikendalikan pakai gerakan tangan. Bikin bingkai pakai jari, susun puzzle fotomu dengan gerakan mencubit, lalu hias hasilnya dengan stiker dan warna bingkai. Semuanya jalan langsung di browser, tanpa install aplikasi tambahan.
 
-## FITUR UTAMA
-
-- **Hand-Gesture Capture:** Tidak perlu klik tombol! Buat bingkai (*frame*) menggunakan jari/tanganmu di depan kamera, dan aplikasi akan otomatis mengambil foto.
-- **Sliding Puzzle Minigame:** Sebelum foto diproses, kamu harus menyusun pecahan fotomu dalam mini-game *sliding puzzle* 3x3 dengan gerakan mencubit (*pinch*). Buat gerakan kepalan tangan (*fist*) untuk menyimpan jika puzzle sudah selesai!
-- **Photobooth Layouts:** Pilih gaya strip fotomu sebelum mulai! (Tersedia format 3 foto vertikal, 4 foto vertikal, atau grid 2x2).
-- **Aesthetic Filters:** Tersedia pilihan filter warna menarik seperti *Black & White*, *Vintage*, atau *Normal* untuk menambah kesan estetik.
-- **Scrapbook Editor:** Hias foto *strip*-mu di ruang edit virtual! Ganti warna bingkai (*frame color*) dan tempelkan stiker-stiker lucu (*drag-and-drop*).
-- **Printing Animation:** Rasakan sensasi menunggu foto dicetak dengan animasi mesin cetak 3D virtual yang lucu sebelum masuk ke mode edit!
+> **Ini adalah hasil recode.** Proyek ini bukan dibuat dari nol. Base code-nya berasal dari **[Shafira0605/puzzle_cam](https://github.com/Shafira0605/puzzle_cam)** (judul aslinya *Scrapbook Puzzle Cam*). Recode-nya dikerjakan oleh **Ibas** di **[IbasAnakMama/Puzzle-Cam](https://github.com/IbasAnakMama/Puzzle-Cam)**. Semua kredit untuk ide dan logika dasar aplikasinya tetap milik pembuat aslinya.
 
 ---
 
-## CARA MENJALANKAN DI KOMPUTER LOKAL
+## Apa itu recode?
 
-Aplikasi ini berjalan murni di *frontend* (Browser). Namun, karena alasan keamanan privasi browser untuk mengakses kamera web (*webcam*), aplikasi ini harus dijalankan melalui **Local Server**.
+Recode artinya menulis ulang atau memodifikasi kode yang sudah ada milik orang lain, lalu mengembangkannya jadi versi sendiri. Ide dan logika dasarnya tetap dipakai, tapi tampilan, fitur, atau cara kerjanya diubah dan ditambah sesuai kreativitas orang yang me-recode.
 
-### 1. Klon Repositori Ini
+Recode berbeda dengan menjiplak. Pembuat aslinya tetap dikreditkan, base code-nya disebutkan terang-terangan, dan hasilnya punya perubahan yang nyata. Makanya README ini mencantumkan repo asli di atas.
+
+---
+
+## Yang berubah di versi recode ini
+
+Logika inti (deteksi tangan, capture, puzzle, editor) sengaja dibiarkan sama seperti aslinya. Yang diubah ada di tampilan dan interaksi:
+
+- **Ganti nama** dari Scrapbook Puzzle Cam jadi **Puzzle Cam**.
+- **Tema warna baru**: dari coklat krem jadi violet, pink, dan cyan. Warna garis grid dan frame di canvas kamera juga diganti supaya jelas terlihat di webcam.
+- **Font baru** (Fredoka, Nunito, Caveat, Space Mono) supaya terasa lebih playful.
+- **Background aurora** di landing page dan layar awal, bergerak pelan dengan gradasi warna.
+- **Jejak kilau kursor**: kursor meninggalkan bintang warna-warni.
+- **Ledakan konfeti** setiap klik, dan **hujan konfeti** saat puzzle berhasil diselesaikan.
+- **Efek hover magnet**: polaroid, stiker, dan photo strip terangkat dan sedikit tertarik ke arah kursor.
+- **Stiker pop** dengan animasi lompat dan konfeti saat diklik.
+- **Ripple** di semua tombol.
+- **Scroll reveal** dan progress bar di landing page.
+- **Easter egg**: tekan tombol **P** untuk hujan konfeti.
+- **Footer kredit** di bagian bawah halaman.
+
+---
+
+## Fitur utama (dari versi asli)
+
+- **Hand-Gesture Capture**: buat bingkai pakai jari dan jempol kedua tangan di depan kamera, foto diambil otomatis.
+- **Sliding Puzzle Minigame**: foto diacak jadi puzzle, susun dengan gerakan mencubit (*pinch*), kunci dengan kepalan tangan (*fist*).
+- **Photobooth Layouts**: pilih strip 3 foto, 4 foto, atau grid 2x2.
+- **Filter**: Normal, Black & White, dan Vintage.
+- **Scrapbook Editor**: ganti warna bingkai dan tempel stiker dengan drag-and-drop.
+- **Printing Animation**: animasi mesin cetak sebelum masuk ke mode edit.
+
+---
+
+## Cara menjalankan di komputer lokal
+
+Aplikasi ini berjalan murni di frontend, tapi browser hanya mengizinkan akses webcam lewat server lokal (atau HTTPS), jadi tidak bisa dibuka dengan klik dua kali pada `index.html`.
+
+### 1. Clone repositori
+
 ```bash
-git clone https://github.com/Shafira0605/puzzle_cam.git
-cd puzzle_cam
+git clone https://github.com/IbasAnakMama/Puzzle-Cam.git
+cd Puzzle-Cam
 ```
 
-### 2. Jalankan Local Server
-Kamu bisa menggunakan ekstensi **Live Server** di VSCode, atau menggunakan Python (jika sudah terinstal):
+### 2. Jalankan local server
+
+Pakai ekstensi **Live Server** di VSCode, atau pakai Python:
+
 ```bash
 python -m http.server 8000
 ```
 
-### 3. Buka di Browser
-Buka browser (disarankan **Google Chrome** atau **Microsoft Edge**) lalu akses URL:
+### 3. Buka di browser
+
+Disarankan Google Chrome atau Microsoft Edge:
+
 ```text
 http://localhost:8000
 ```
-*Catatan: Pastikan komputermu terhubung ke internet saat pertama kali dibuka karena aplikasi akan mengunduh model AI pelacak tangan dari Google MediaPipe.*
+
+Catatan: koneksi internet diperlukan saat pertama kali dibuka karena aplikasi mengunduh model pelacak tangan dari Google MediaPipe, plus font dan Tailwind dari CDN.
 
 ---
 
-## CARA BERMAIN
+## Cara bermain
 
-1. Buka aplikasi, pilih **Layout** (jumlah foto) dan **Filter** warnanya, lalu klik "START CREATING".
-2. Di depan kamera, buat bentuk **bingkai (frame)** menggunakan jari telunjuk dan jempol kedua tanganmu.
-3. Aplikasi akan mengambil gambar dan mengacaknya menjadi *puzzle*.
-4. Gunakan gaya gerakan tangan **mencubit (pinch)** dan geser tanganmu untuk memindahkan kepingan *puzzle*.
-5. Setelah *puzzle* tersusun, buat **kepalan tangan (fist)** untuk mengunci dan menyimpan kepingan tersebut.
-6. Ulangi proses hingga seluruh slot foto pada layout *photobooth* terpenuhi.
-7. Tunggu animasi *printing* selesai, lalu hias fotomu di **Scrapbook Studio** dengan stiker dan warna bingkai.
-8. Klik **Download Photo** untuk menyimpan mahakarya *scrapbook*-mu!
+1. Pilih **layout** dan **filter**, lalu klik **Start Creating**.
+2. Di depan kamera, bentuk bingkai pakai telunjuk dan jempol kedua tanganmu.
+3. Aplikasi mengambil gambar lalu mengacaknya jadi puzzle.
+4. Cubit (*pinch*) dan geser tanganmu untuk memindahkan kepingan.
+5. Kalau puzzle sudah tersusun, kepalkan tangan (*fist*) untuk mengunci.
+6. Ulangi sampai semua slot di strip foto terisi.
+7. Tunggu animasi printing, lalu hias fotomu di editor dengan stiker dan warna bingkai.
+8. Simpan hasilnya.
+
+---
+
+## Struktur file
+
+```text
+Puzzle-Cam/
+├── index.html      # tampilan halaman
+├── app.js          # logika utama: gesture, puzzle, capture, editor
+├── fx.js           # efek interaktif tambahan (hasil recode)
+└── css/
+    └── styles.css  # styling
+```
 
 ---
 
-## TEKNOLOGI YANG DIGUNAKAN
+## Teknologi
 
-- **HTML5 & Vanilla JavaScript** (ES6 Modules)
-- **CSS3 & Tailwind CSS** (Untuk *layout* UI estetik)
-- **Google MediaPipe Hands** (Deteksi gerakan kerangka tangan secara *real-time*)
-- **HTML5 Canvas API** (Manipulasi gambar, filter, dan fitur interaktif drag-and-drop stiker)
+- HTML5 dan Vanilla JavaScript (ES Modules)
+- CSS3 dan Tailwind CSS
+- Google MediaPipe (deteksi kerangka tangan real-time)
+- HTML5 Canvas API (filter, puzzle, editor stiker)
 
 ---
-*Created and Modified by Shafira0605*
+
+## Rencana update berikutnya
+
+- [ ] Efek suara kecil saat kepingan puzzle terpasang dan saat puzzle selesai
+- [ ] Mode gelap (dark mode)
+- [ ] Pilihan tingkat kesulitan puzzle (3x3, 4x4, 5x5) dengan timer dan hitungan langkah
+- [ ] Lebih banyak stiker, frame, dan filter baru
+- [ ] Tombol bagikan hasil foto langsung ke media sosial
+- [ ] Tampilan yang lebih rapi untuk layar HP dan tablet
+- [ ] Galeri riwayat foto yang tersimpan di browser
+
+---
+
+## Kredit
+
+- **Base code dan ide asli:** [Shafira0605](https://github.com/Shafira0605) lewat [puzzle_cam](https://github.com/Shafira0605/puzzle_cam)
+- **Recode, tampilan baru, dan efek interaktif:** [Ibas (IbasAnakMama)](https://github.com/IbasAnakMama) lewat [Puzzle-Cam](https://github.com/IbasAnakMama/Puzzle-Cam)
+- **Deteksi tangan:** [Google MediaPipe](https://developers.google.com/mediapipe)
+
+*Recode by Ibas, berdasarkan karya Shafira0605.*
